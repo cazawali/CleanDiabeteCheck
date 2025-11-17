@@ -1,0 +1,211 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <div class="nav-logo">⚡</div>
+      <span class="nav-title">DiabèteCheck</span>
+    </div>
+
+    <div class="nav-menu">
+      <a class="nav-link" href="#">{{ 'nav_accueil' | t }}</a>
+      <a class="nav-link active" href="#">{{ 'nav_prediction' | t }}</a>
+      <a class="nav-link" href="#">{{ 'nav_conseils' | t }}</a>
+      <a class="nav-link" href="#">{{ 'nav_regimes' | t }}</a>
+      <a class="nav-link" href="#">{{ 'nav_apropos' | t }}</a>
+
+      <button class="nav-btn" type="button" (click)="onLoginClick()">
+        {{ isLoggedIn ? (('nav_bonjour' | t) + ', ' + (user()?.username ?? '')) : ('nav_connexion' | t) }}
+      </button>
+
+      <select
+  [value]="i18n.currentLang()"
+  (change)="onChangeLang($any($event.target).value)"
+  class="lang-switcher"
+>
+        <option value="fr">FRANÇAIS</option>
+        <option value="en">ENGLISH</option>
+        <option value="es">ESPAÑOL</option>
+      </select>
+    </div>
+  </div>
+</nav>
+
+<div class="page-content">
+  <div class="prediction-page">
+    <div class="container">
+      <div class="page-header">
+        <h1>{{ 'pageheader_titre' | t }}</h1>
+        <p>{{ 'pageheader_desc' | t }}</p>
+      </div>
+
+      <div class="prediction-content">
+        <div class="prediction-form-container">
+          <div class="medical-icon icon-1">🩺</div>
+          <div class="medical-icon icon-2">❤️</div>
+
+          <div class="form-card" [class.loading]="ui().loading">
+            <div class="form-header">
+              <h2>{{ 'form_medical_titre' | t }}</h2>
+              <p>{{ 'form_medical_desc' | t }}</p>
+            </div>
+
+            <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="gender">{{ 'label_gender' | t }}</label>
+                  <select id="gender" formControlName="gender" required>
+                    <option [ngValue]="null">{{ 'option_gender_select' | t }}</option>
+                    <option [ngValue]="0">{{ 'option_gender_female' | t }}</option>
+                    <option [ngValue]="1">{{ 'option_gender_male' | t }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="age">{{ 'label_age' | t }}</label>
+                  <input id="age" type="number" formControlName="age" min="0" max="120" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="hypertension">{{ 'label_hypertension' | t }}</label>
+                  <select id="hypertension" formControlName="hypertension" required>
+                    <option [ngValue]="null">{{ 'option_hypertension_select' | t }}</option>
+                    <option [ngValue]="0">{{ 'option_hypertension_no' | t }}</option>
+                    <option [ngValue]="1">{{ 'option_hypertension_yes' | t }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="heart_disease">{{ 'label_heart_disease' | t }}</label>
+                  <select id="heart_disease" formControlName="heart_disease" required>
+                    <option [ngValue]="null">{{ 'option_heart_disease_select' | t }}</option>
+                    <option [ngValue]="0">{{ 'option_heart_disease_no' | t }}</option>
+                    <option [ngValue]="1">{{ 'option_heart_disease_yes' | t }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="smoking_history">{{ 'label_smoking_history' | t }}</label>
+                <select id="smoking_history" formControlName="smoking_history" required>
+                  <option [ngValue]="null">{{ 'option_smoking_select' | t }}</option>
+                  <option [ngValue]="0">{{ 'option_smoking_never' | t }}</option>
+                  <option [ngValue]="1">{{ 'option_smoking_unknown' | t }}</option>
+                  <option [ngValue]="2">{{ 'option_smoking_current' | t }}</option>
+                  <option [ngValue]="3">{{ 'option_smoking_former' | t }}</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bmi">{{ 'label_bmi' | t }}</label>
+                  <input id="bmi" type="number" step="0.1" formControlName="bmi" required />
+                </div>
+                <div class="form-group">
+                  <label for="HbA1c_level">{{ 'label_hba1c' | t }}</label>
+                  <input id="HbA1c_level" type="number" step="0.1" formControlName="HbA1c_level" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="blood_glucose_level">{{ 'label_blood_glucose' | t }}</label>
+                <input id="blood_glucose_level" type="number" formControlName="blood_glucose_level" required />
+              </div>
+
+              <button class="btn btn-predict" type="submit" [disabled]="ui().loading">
+                @if (!ui().loading) { {{ 'btn_predict' | t }} } @else { <span class="loader"></span> }
+              </button>
+            </form>
+          </div>
+        </div>
+        
+        <div class="prediction-result-container">
+        @if (showResult) {
+          @if (ui().type !== 'idle') {
+            <div class="result-card"
+                 [ngClass]="{ 'error': ui().type==='error', 'diabetic': ui().type==='diabetic', 'normal': ui().type==='normal' }">
+              <div class="result-header" [ngClass]="ui().type">
+                <div class="result-icon">{{ ui().type==='error' ? '❌' : (ui().type==='diabetic' ? '⚠️' : '✅') }}</div>
+                <h3>{{ 'result_title' | t }}</h3>
+              </div>
+              <div class="result-content">
+                @if (ui().type !== 'error') {
+                  <p class="result-prediction">
+                    {{ 'result_pred' | t }}:
+                    <strong>{{ ui().type==='diabetic' ? ('diabetic_result' | t) : ('non_diabetic_result' | t) }}</strong>
+                  </p>
+
+                  @if (ui().type === 'diabetic') {
+                    <div class="alert alert-danger">
+                      <strong>{{ 'high_risk' | t }}</strong> - {{ 'high_risk_msg' | t }}
+                    </div>
+                    <div class="recommendations">
+                      <h4>🏥 {{ 'recommendations_title' | t }} :</h4>
+                      <ul>
+                        <li>{{ 'rec1' | t }}</li>
+                        <li>{{ 'rec2' | t }}</li>
+                        <li>{{ 'rec3' | t }}</li>
+                        <li>{{ 'rec4' | t }}</li>
+                      </ul>
+                    </div>
+                  } @else if (ui().type === 'normal') {
+                    <div class="alert alert-success">
+                      <strong>{{ 'low_risk' | t }}</strong> - {{ 'low_risk_msg' | t }}
+                    </div>
+                    <div class="recommendations">
+                      <h4>🌟 {{ 'prevention_title' | t }} :</h4>
+                      <ul>
+                        <li>{{ 'prevention1' | t }}</li>
+                        <li>{{ 'prevention2' | t }}</li>
+                        <li>{{ 'prevention3' | t }}</li>
+                        <li>{{ 'prevention4' | t }}</li>
+                      </ul>
+                    </div>
+                  }
+                } @else {
+                  <p>{{ 'error' | t }}: {{ ui().message || 'API error' }}</p>
+                }
+              </div>
+            </div>
+          }
+        }
+
+          <div class="info-card warning-card">
+            <h3>{{ 'warning_title' | t }}</h3>
+            <p>{{ 'warning_text' | t }}</p>
+          </div>
+
+          <div class="info-card params-card">
+            <h3>{{ 'info_params_title' | t }}</h3>
+            <ul>
+              <li><strong>{{ 'param_hba1c' | t }}</strong></li>
+              <li><strong>{{ 'param_glucose' | t }}</strong></li>
+              <li><strong>{{ 'param_bmi' | t }}</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <div class="footer-brand">
+          <div class="footer-logo">⚡</div>
+          <span>DiabèteCheck</span>
+        </div>
+        <p>{{ 'footer_description' | t }}</p>
+      </div>
+      <div class="footer-section">
+        <h4>{{ 'footer_contact_title' | t }}</h4>
+        <p>📧 contact@smartiadev.com</p>
+        <p>📞 +1 (514) 219-6780</p>
+        <p>{{ 'footer_location' | t }}</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>{{ 'footer_copyright' | t }}</p>
+    </div>
+  </div>
+</footer>

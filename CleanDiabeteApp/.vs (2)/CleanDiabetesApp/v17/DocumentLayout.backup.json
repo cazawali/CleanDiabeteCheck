@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\mounp\\OneDrive\\Desktop\\Stage BDEB\\CleanDiabeteApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9599B6F9-2F84-4987-B1F0-531DAF8CB52B}|src\\Application\\Application.csproj|c:\\users\\mounp\\onedrive\\desktop\\stage bdeb\\cleandiabeteapp\\src\\application\\predictions\\commands\\createpredictioncommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9599B6F9-2F84-4987-B1F0-531DAF8CB52B}|src\\Application\\Application.csproj|solutionrelative:src\\application\\predictions\\commands\\createpredictioncommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1277145C-DE61-436D-A2A5-02EFE436EA2A}|src\\Domain\\Domain.csproj|c:\\users\\mounp\\onedrive\\desktop\\stage bdeb\\cleandiabeteapp\\src\\domain\\entities\\prediction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1277145C-DE61-436D-A2A5-02EFE436EA2A}|src\\Domain\\Domain.csproj|solutionrelative:src\\domain\\entities\\prediction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E3C569F-1447-4DD2-B096-E44BDF330FAA}|src\\WebApi\\WebApi.csproj|c:\\users\\mounp\\onedrive\\desktop\\stage bdeb\\cleandiabeteapp\\src\\webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E3C569F-1447-4DD2-B096-E44BDF330FAA}|src\\WebApi\\WebApi.csproj|solutionrelative:src\\webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CreatePredictionCommand.cs",
+              "DocumentMoniker": "C:\\Users\\mounp\\OneDrive\\Desktop\\Stage BDEB\\CleanDiabeteApp\\src\\Application\\Predictions\\Commands\\CreatePredictionCommand.cs",
+              "RelativeDocumentMoniker": "src\\Application\\Predictions\\Commands\\CreatePredictionCommand.cs",
+              "ToolTip": "C:\\Users\\mounp\\OneDrive\\Desktop\\Stage BDEB\\CleanDiabeteApp\\src\\Application\\Predictions\\Commands\\CreatePredictionCommand.cs",
+              "RelativeToolTip": "src\\Application\\Predictions\\Commands\\CreatePredictionCommand.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAowBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T21:47:18.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Prediction.cs",
+              "DocumentMoniker": "C:\\Users\\mounp\\OneDrive\\Desktop\\Stage BDEB\\CleanDiabeteApp\\src\\Domain\\Entities\\Prediction.cs",
+              "RelativeDocumentMoniker": "src\\Domain\\Entities\\Prediction.cs",
+              "ToolTip": "C:\\Users\\mounp\\OneDrive\\Desktop\\Stage BDEB\\CleanDiabeteApp\\src\\Domain\\Entities\\Prediction.cs",
+              "RelativeToolTip": "src\\Domain\\Entities\\Prediction.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAIwDIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T21:46:46.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\mounp\\OneDrive\\Desktop\\Stage BDEB\\CleanDiabeteApp\\src\\WebApi\\Program.cs",
+              "RelativeDocumentMoniker": "src\\WebApi\\Program.cs",
+              "ToolTip": "C:\\Users\\mounp\\OneDrive\\Desktop\\Stage BDEB\\CleanDiabeteApp\\src\\WebApi\\Program.cs",
+              "RelativeToolTip": "src\\WebApi\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T21:27:41.075Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
